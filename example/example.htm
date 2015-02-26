@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>RateIt</title>
     <link href="../src/rateit.css" rel="stylesheet" type="text/css">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 
     <style>
         body
         {
             font-family: Tahoma;
             font-size: 12px;
+            margin: 1em;
         }
         h1
         {
@@ -32,16 +33,24 @@
         {
             margin-left: -20px;
         }
+
+        #toc {
+            -moz-column-count: 3;
+            -webkit-column-count: 3;
+            column-count: 3;
+            max-width: 1100px;
+        }
     </style>
     <!-- alternative styles -->
     <link href="content/bigstars.css" rel="stylesheet" type="text/css">
     <link href="content/antenna.css" rel="stylesheet" type="text/css">
+  <link href="content/svg.css" rel="stylesheet" type="text/css">
     <!-- syntax highlighter -->
     <link href="sh/shCore.css" rel="stylesheet" type="text/css">
     <link href="sh/shCoreDefault.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>
+    <h1><img src="content/rateit.png" style="height:5.6em; float:right" />
         RateIt plugin</h1>
     <h2>
         Prerequisites</h2>
@@ -63,12 +72,12 @@
     <h2>
         Examples</h2>
     <div style="font-weight: bold">
-        <span id="toc"></span>
+        <ul id="toc"></ul>
     </div>
     <ul class="nostyle" id="examples">
-        <li id="ex_1">
+        <li id="ex_a1">
             <h3>
-                1) Basic usage</h3>
+                1a) Basic usage</h3>
             <div class="rateit">
             </div>
             <pre class="brush: xml">
@@ -76,9 +85,19 @@
             &lt;/div>
             </pre>
         </li>
+          <li id="ex_1b">
+            <h3>
+                1a) Basic usage (inline element)</h3>
+            <span class="rateit">
+            </span>
+            <pre class="brush: xml">
+            &lt;span class="rateit">
+            &lt;/span>
+            </pre>
+        </li>
         <li id="ex_2a">
             <h3>
-                2a) Progressive enhancement (using HTML5 range input type)
+                2a) Progressive enhancement (using input[type=range])
             </h3>
             <input type="range" min="0" max="7" value="0" step="0.5" id="backing2">
             <div class="rateit" data-rateit-backingfld="#backing2">
@@ -96,7 +115,7 @@
             </h3>
             <select id="backing2b">
                 <option value="0">Bad</option>
-                <option value="1">OK</option>
+                <option value="1" selected="selected">OK</option>
                 <option value="2">Great</option>
                 <option value="3">Excellent</option>
             </select>
@@ -105,11 +124,33 @@
             <pre class="brush: xml">
             &lt;select id="backing2b">
                 &lt;option value="0">Bad&lt;/option>
-                &lt;option value="1">OK&lt;/option>
+                &lt;option value="1" selected="selected">OK&lt;/option>
                 &lt;option value="2">Great&lt;/option>
                 &lt;option value="3">Excellent&lt;/option>
             &lt;/select>
             &lt;div class="rateit" data-rateit-backingfld="#backing2b">&lt;/div>
+            </pre>
+        </li>
+        <li id="ex_2c">
+            <h3>
+                2c) Progressive enhancement (using select), and overriding min value
+            </h3>
+            <select id="backing2c">
+                <option value="1">Bad</option>
+                <option value="2">OK</option>
+                <option value="3">Great</option>
+                <option value="4">Excellent</option>
+            </select>
+            <div class="rateit" data-rateit-backingfld="#backing2c" data-rateit-min="0">
+            </div>
+            <pre class="brush: xml">
+            &lt;select id="backing2c">
+                &lt;option value="1">Bad&lt;/option>
+                &lt;option value="2">OK&lt;/option>
+                &lt;option value="3">Great&lt;/option>
+                &lt;option value="4">Excellent&lt;/option>
+            &lt;/select>
+            &lt;div class="rateit" data-rateit-backingfld="#backing2c" data-rateit-min="0">&lt;/div>
             </pre>
         </li>
         <li id="ex_3">
@@ -272,6 +313,53 @@ div.antenna div.rateit-selected
 }            
             </pre>
         </li>
+      <li id="ex_7c">
+        <h3>
+          7c) SVG icons
+        </h3>
+        <p>
+        Since SVG can be set as a background image (either through setting the URL to an svg file or by using the Data URI scheme), we can use it as an image inside our RateIt plugin.<br />
+          This could allow us even to create the image on the fly, by rendering the SVG server-side, or by building the SVG in javascript and setting it as the source by using the Data URI scheme.
+        </p>
+        <div class="rateit svg" data-rateit-starwidth="15" data-rateit-starheight="15">
+        </div>
+        <h4>
+          Inline code
+        </h4>
+        <pre class="brush: xml">
+&lt;div class="rateit svg" data-rateit-starwidth="15" data-rateit-starheight="15">&lt;/div>            
+            </pre>
+        <h4>
+          Style sheet
+        </h4>
+        <p>In the CSS file I've chosen to embed the SVG image using the Data URI scheme.</p>
+        <pre class="brush: css">
+div.svg div.rateit-range {
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTVweCIgaGVpZ2h0PSIxNXB4Ij4NCiAgPHRleHQgeD0iMCIgeT0iMTUiIGZpbGw9ImJsYWNrIiBmb250LXNpemU9IjE4Ij7inKY8L3RleHQ+DQo8L3N2Zz4=') /*star-normal.svg*/;
+  *background: url(star-normal.svg); /* For IE 6 and 7 */
+}
+div.svg div.rateit-hover {
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiPg0KICA8dGV4dCB4PSIwIiB5PSIxNSIgZmlsbD0ieWVsbG93IiBmb250LXNpemU9IjE4Ij7inKY8L3RleHQ+DQo8L3N2Zz4=') /*star-hover.svg*/;
+  *background: url(star-hover.svg); /* For IE 6 and 7 */
+}
+div.svg div.rateit-selected {
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiPg0KICA8dGV4dCB4PSIwIiB5PSIxNSIgZmlsbD0icmVkIiBmb250LXNpemU9IjE4Ij7inKY8L3RleHQ+DQo8L3N2Zz4=') /*star-selected.svg*/;
+  *background: url(star-selected.svg); /* For IE 6 and 7 */
+}
+div.svg div.rateit-preset {
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4NCiAgPHRleHQgeD0iMCIgeT0iMTUiIGZpbGw9ImJsYWNrIiBmb250LXNpemU9IjE1Ij7inKY8L3RleHQ+DQo8L3N2Zz4=') /*star-preset.svg*/;
+  *background: url(star-preset.svg); /* For IE 6 and 7 */
+}
+            </pre>
+        <h4>SVG file</h4>
+        <p>This SVG file shows a simple Black four-pointed star unicode glyph</p>
+        <pre class="brush: xml">
+&lt;?xml version="1.0" encoding="UTF-8" ?>
+&lt;svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px">
+  &lt;text x="0" y="15" fill="black" font-size="18">✦&lt;/text>
+&lt;/svg>
+</pre>
+      </li>
         <li id="ex_8">
             <h3>
                 8) RTL support</h3>
@@ -300,6 +388,12 @@ div.antenna div.rateit-selected
                 <button onclick="$('#rateit9').rateit('max', prompt('Input numerical value'))">
                     Set max value</button>
             </div>
+             <div>
+                <button onclick="alert($('#rateit9').rateit('min'))">
+                    Get min value</button>
+                <button onclick="$('#rateit9').rateit('min', prompt('Input numerical value'))">
+                    Set min value</button>
+            </div>
             <div>
                 <button onclick="alert($('#rateit9').rateit('step'))">
                     Get step size</button>
@@ -318,6 +412,12 @@ div.antenna div.rateit-selected
                 <button onclick="$('#rateit9').rateit('ispreset',!$('#rateit9').rateit('ispreset'))">
                     Toggle ispreset</button>
             </div>
+          <div>
+            <button onclick="$('#rateit9').rateit('reset')">
+              Reset
+            </button>
+          </div>
+
 
             <pre class="brush: xml">
 	            &lt;div class="rateit" id="rateit9">
@@ -342,7 +442,9 @@ div.antenna div.rateit-selected
                     &lt;button onclick="alert($('#rateit9').rateit('ispreset'))">Get ispreset value&lt;/button>
                     &lt;button onclick="$('#rateit9').rateit('ispreset',!$('#rateit9').rateit('ispreset'))">Toggle ispreset&lt;/button>
                 &lt;/div>   
-                         
+                &lt;div>
+                    &lt;button onclick="$('#rateit9').rateit('reset')">Reset&lt;/button>
+                &lt;/div>                           
             </pre>
         </li>
         <li id="ex_10">
@@ -520,16 +622,97 @@ div.antenna div.rateit-selected
 
              </pre>
         </li>
-      <!--  <li id="ex_12">
+
+      <li id="ex_12">
+        <h3>
+          12) Resizing
+        </h3>
+        <p>
+          Sometimes we would like to resize the rating controls (perhaps based on screen size). <br />
+          This is as easy as<br />
+          a) adding a class to the rateit control, which would change the background image.<br/>
+          b) modifying the starwidth and starheigth properties.
+          <br /><br />
+          The alternative styling is taken from example <a href="#ex_7a">7a) styling</a>.
+        </p>
+
+        <div class="rateit" id="rateit12">
+        </div>
+        <p>Pick a size: <select id="size_12"><option data-class="" data-size="16" selected>normal</option><option data-class="bigstars" data-size="32">big</option></select></p>
+
+        <script type="text/javascript">
+          $('#size_12').change(function () {
+            var option = $(this.options[this.selectedIndex]);
+            $('#rateit12').removeClass('bigstars')
+                          .addClass(option.data('class'))
+                          .rateit('starwidth', option.data('size'))
+                          .rateit('starheight', option.data('size'));
+
+          });
+        </script>  
+        <pre class="brush: xml">
+          &lt;div class=&quot;rateit&quot; id=&quot;rateit12&quot;&gt;&lt;/div&gt;
+          &lt;p&gt;Pick a size: 
+            &lt;select id=&quot;size_12&quot;&gt;
+                &lt;option data-class=&quot;&quot; data-size=&quot;16&quot; selected&gt;normal&lt;/option&gt;
+                &lt;option data-class=&quot;bigstars&quot; data-size=&quot;32&quot;&gt;big&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/p&gt;
+
+          &lt;script type=&quot;text/javascript&quot;&gt;
+            $(&#39;#size_12&#39;).change(function () {
+              var option = $(this.options[this.selectedIndex]);
+              $(&#39;#rateit12&#39;).removeClass(&#39;bigstars&#39;) //remove old class
+                            .addClass(option.data(&#39;class&#39;))  //add new class
+                            .rateit(&#39;starwidth&#39;, option.data(&#39;size&#39;)) //change width
+                            .rateit(&#39;starheight&#39;, option.data(&#39;size&#39;)); //change height
+
+            });
+        &lt;/script&gt;  
+</pre>
+      </li>
+        <li id="ex_13">
             <h3>
-                12) Initial value in different color</h3>
-                <p>Sometimes we want to show the average rating as the initial value. In most cases this should be in a different color. </p>
-                <p>RateIt is flexible enough to also allow this scenario with little effort.
-                
-                </p>
+                13) Confirmation before rating or resetting
+            </h3>
+            <p>
+                Sometimes we would like to ask the user to confirm his/her action, or to show some dialog box before the rating is submitted.<br />
+                We can now bind to the "beforerated" and "beforereset" events. Both events occur before the actual rating/resetting. Both events might also be cancelled, by using the <code>e.preventDefault()</code> method.
+            </p>
 
+            <div class="rateit" id="rateit13">
+            </div>
 
-        </li>-->
+            <script type="text/javascript">
+                $('#rateit13').on('beforerated', function (e, value) {
+                    if (!confirm('Are you sure you want to rate this item: ' +  value + ' stars?')) {
+                        e.preventDefault();
+                    }
+                });
+
+                $('#rateit13').on('beforereset', function (e) {
+                    if (!confirm('Are you sure you want to reset the rating?')) {
+                        e.preventDefault();
+                    }
+                });
+            </script>
+            <pre class="brush: xml">
+          &lt;div class=&quot;rateit&quot; id=&quot;rateit3&quot;&gt;&lt;/div&gt;
+       
+          &lt;script type=&quot;text/javascript&quot;&gt;
+                $('#rateit13').on('beforerated', function (e, value) {
+                    if (!confirm('Are you sure you want to rate this item: ' +  value + ' stars?')) {
+                        e.preventDefault();
+                    }
+                });
+                $('#rateit13').on('beforereset', function (e) {
+                    if (!confirm('Are you sure you want to reset the rating?')) {
+                        e.preventDefault();
+                    }
+                });        
+           &lt;/script&gt;  
+</pre>
+        </li>
     </ul>
 
     <script src="../src/jquery.rateit.js" type="text/javascript"></script>
@@ -539,16 +722,11 @@ div.antenna div.rateit-selected
         var toc = [];
         $('#examples > li').each(function (i, e) {
 
-
-            if (i > 0)
-                toc.push(', ');
-            toc.push('<a href="#')
+            toc.push('<li><a href="#')
             toc.push(e.id)
             toc.push('">')
-            var title = $(e).find('h3:first').text();
-            title = title.substring(title.indexOf(')') + 2);
-            toc.push(title);
-            toc.push('</a>');
+            toc.push($(e).find('h3:first').text());
+            toc.push('</a></li>');
 
         });
 
