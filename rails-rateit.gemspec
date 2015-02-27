@@ -5,6 +5,7 @@ Gem::Specification.new do |spec|
   spec.name          = "rails-rateit"
   spec.authors       = ["José Antonio Yáñez Jiménez"]
   spec.email         = ["jose@jimenezfrontent.es"]
+  spec.licenses      = ["CC-BY 4.0"]
   spec.description   = %q{Rails wrapper for the jQuery RateIt plugin}
   spec.summary       = %q{Rails assets pipeline compatible version of the jQuery RateIt plugin}
   spec.homepage      = "https://github.com/berikin/rails-rateit"
@@ -16,6 +17,6 @@ Gem::Specification.new do |spec|
   spec.version       = Rateit::VERSION
   spec.add_dependency "railties", ">= 3.2", "< 5.0"
 
-  spec.add_development_dependency "activesupport"
-  spec.add_development_dependency "sass-rails"
+  spec.add_development_dependency "activesupport", "~> 0"
+  spec.add_development_dependency "sass-rails", "~> 0"
 end
