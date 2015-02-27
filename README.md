@@ -19,8 +19,6 @@ gem install rails-rateit
 
 ## Usage
 
-## Usage
-
 In your `application.css`, include the css file:
 
 ```css
