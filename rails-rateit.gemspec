@@ -17,6 +17,6 @@ Gem::Specification.new do |spec|
   spec.version       = Rateit::VERSION
   spec.add_dependency "railties", ">= 3.2", "< 5.0"
 
-  spec.add_development_dependency "activesupport", "~> 0"
-  spec.add_development_dependency "sass-rails", "~> 0"
+  spec.add_development_dependency "activesupport"
+  spec.add_development_dependency "sass-rails"
 end

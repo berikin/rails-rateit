@@ -1,3 +1,3 @@
 Dummy::Application.routes.draw do
-  get "/icons", :to => "pages#icons"
+  get "/stars", :to => "pages#stars"
 end
