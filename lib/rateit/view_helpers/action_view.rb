@@ -1,20 +1,22 @@
 module Rateit
   module ViewHelpers
     module ActionView
-      def rateit_div(options = {})
-        tag_options = { class: "rateit" }
-        options.each do |name, value|
-          tag_options["data-rateit-#{name}"] = value
-        end
-        content_tag(:div, "", tag_options)
-      end
+      def rateit(options = {}, tag_options = {})
+        classes = ["rateit"]
+        classes.concat Array(options.delete(:class))
+        type = options.delete(:type)
 
-      def rateit_span(options = {})
-        tag_options = { class: "rateit" }
-        options.each do |name, value|
-          tag_options["data-rateit-#{name}"] = value
+        options2 = {}
+        tag_options.each do |name, value|
+          options2["data-rateit-#{name}"] = value
         end
-        content_tag(:span, "", tag_options)
+        options2["class"] = classes
+        if type.blank? || type == "div"
+          output = content_tag(:div, nil, options.merge(options2))
+        else
+          output = content_tag(:span, nil, options.merge(options2))
+        end
+        output
       end
     end
   end
