@@ -42,8 +42,13 @@ rails generate rateit:install
 In you view, use the rateit_tag helper :
 
 ```ruby
-<%= form.number_field(:rating, min: 0, max: 10, step: 1) %>
-<%= rateit_tag(backingfld: "#my_object_rating", max: 10, min: 0, step: 1, resetable: "false") %>
+<%= number_field_tag(:rating, nil, {min: 0, max: 4, step: 1, id: "my_object_rating"}) %>
+<%= rateit(extra: {:"data-foo" => "bar"}, type: "div", backingfld: "#my_object_rating", max: 4, min: 0, step: 1, resetable: "false") %>
+
+
+<%= number_field_tag(:rating, 4, {min: 0, max: 10, step: 1, id: "my_object_rating2"}) %>
+<%= rateit(type: "span", backingfld: "#my_object_rating2", max: 10, min: 0, step: 0.5, resetable: "true", value: "2", ispreset: "true") %>
+
 ```
 
 ## Contributing

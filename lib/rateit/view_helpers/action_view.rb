@@ -5,8 +5,8 @@ module Rateit
         classes = ["rateit"]
         classes.concat Array(options.delete(:class))
         type = options.delete(:type)
-        extra = options.delete(:extra)
-
+        extra = options.delete(:extra) if options[:extra].present?
+        extra = {} unless extra.present?
         options_export = {}
         options.each do |name, value|
           options_export["data-rateit-#{name.to_s.strip}"] = value
