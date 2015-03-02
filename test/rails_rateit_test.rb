@@ -54,14 +54,14 @@ class RailsRateitTest < ActionDispatch::IntegrationTest
     div += "data-rateit-min=\"0\" data-rateit-step=\"1\" "
     div += "data-rateit-resetable=\"false\" class=\"rateit\" "
     div += "data-foo=\"bar\"></div>"
-    assert_match(div, response.body)
+    assert response.body.include?(div)
 
     span = "<span data-rateit-backingfld=\"#my_object_rating2\" "
     span += "data-rateit-max=\"10\" data-rateit-min=\"0\" "
     span += "data-rateit-step=\"0.5\" "
     span += "data-rateit-resetable=\"true\" data-rateit-value=\"2\" "
     span += "data-rateit-ispreset=\"true\" class=\"rateit\"></span>"
-    assert_match(span, response.body)
+    assert response.body.include?(span)
   end
 
   private
