@@ -8,7 +8,7 @@ Rails wrapper for the jQuery RateIt plugin with improved SVG images!
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails-rateit', '~> 1.0.22'
+gem 'rails-rateit', '~> 1.0.22', github: 'berikin/rails-rateit'
 ```
 
 and run `bundle install`.
