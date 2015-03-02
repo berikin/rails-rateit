@@ -4,6 +4,7 @@
 **
 */
 .rateit {
+  cursor: pointer;
   display: -moz-inline-box;
   display: inline-block;
   position: relative;
@@ -20,7 +21,7 @@
   position: relative;
   display: -moz-inline-box;
   display: inline-block;
-  background: url(<%= asset_path "star.gif" %>);
+  background: url(<%= asset_path "stars.svg" %>);
   height: 16px;
   outline: none;
 }
@@ -50,7 +51,7 @@
 }
 
 .rateit .rateit-hover {
-  background: url(<%= asset_path "star.gif" %>) left -32px;
+  background: url(<%= asset_path "stars.svg" %>) left -32px;
 }
 
 .rateit .rateit-hover-rtl {
@@ -58,7 +59,7 @@
 }
 
 .rateit .rateit-selected {
-  background: url(<%= asset_path "star.gif" %>) left -16px;
+  background: url(<%= asset_path "stars.svg" %>) left -16px;
 }
 
 
@@ -67,15 +68,15 @@
 }
 
 .rateit .rateit-preset {
-  background: url(<%= asset_path "star.gif" %>) left -48px;
+  background: url(<%= asset_path "stars.svg" %>) left -48px;
 }
 
 .rateit .rateit-preset-rtl {
-  background: url(<%= asset_path "star.gif" %>) left -48px;
+  background: url(<%= asset_path "stars.svg" %>) left -48px;
 }
 
 .rateit button.rateit-reset {
-  background: url(<%= asset_path "delete.gif" %>) 0 0;
+  background: url(<%= asset_path "clear.svg" %>) 0 0;
   width: 16px;
   height: 16px;
   display: -moz-inline-box;
