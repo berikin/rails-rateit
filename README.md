@@ -1,12 +1,14 @@
 # Rails RateIt [![Gem Version](https://badge.fury.io/gh/berikin%2Frails-rateit.svg)](https://badge.fury.io/gh/berikin%2Frails-rateit.svg)[![Build Status](https://travis-ci.org/berikin/rails-rateit.svg?branch=v1.0.22)](https://travis-ci.org/berikin/rails-rateit)
-Rails wrapper for the jQuery RateIt plugin with improved images!
+Rails wrapper for the jQuery RateIt plugin with improved SVG images!
+
+![demo](example/rateit.gif)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails-rateit'
+gem 'rails-rateit', '~> 1.0.22'
 ```
 
 and run `bundle install`.
@@ -33,7 +35,7 @@ In your `application.js`, include the js file:
 //= require jquery.rateit
 ```
 
-Or simply the javascript and stylesheets:
+Or simply use the javascript and stylesheet generator:
 
 ```bash
 rails generate rateit:install
