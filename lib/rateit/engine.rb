@@ -7,7 +7,7 @@ module Rateit
   class Railtie < ::Rails::Railtie
     initializer "rateit.action_view" do |app|
       ActiveSupport.on_load :action_view do
-        require 'view_helpers/action_view'
+        require 'rateit/view_helpers/action_view'
         include Rateit::ViewHelpers::ActionView
       end
     end
