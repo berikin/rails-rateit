@@ -1,5 +1,5 @@
 # Rails RateIt [![Gem Version](https://badge.fury.io/gh/berikin%2Frails-rateit.svg)](https://badge.fury.io/gh/berikin%2Frails-rateit.svg)[![Build Status](https://travis-ci.org/berikin/rails-rateit.svg?branch=v1.0.22)](https://travis-ci.org/berikin/rails-rateit)
-Rails wrapper for the jQuery RateIt plugin
+Rails wrapper for the jQuery RateIt plugin with improved images!
 
 ## Installation
 

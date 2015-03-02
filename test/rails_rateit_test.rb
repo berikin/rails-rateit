@@ -7,9 +7,9 @@ class RailsRateitTest < ActionDispatch::IntegrationTest
   end
 
   test "Images found" do
-    get "/assets/delete.gif"
+    get "/assets/clear.svg"
     assert_response :success
-    get "/assets/star.gif"
+    get "/assets/stars.svg"
     assert_response :success
   end
 
@@ -45,16 +45,23 @@ class RailsRateitTest < ActionDispatch::IntegrationTest
 
   test "helpers should be available in the view" do
     get "/stars"
-    #assert_response :success
-    puts "DALE"
-    puts response.body
-    puts "DALE2"
-    assert_select "i.brk.brk-rails"
-    assert_select "i.brk.brk-ruby.brk-2x"
-    assert_match(
-      "Fear the snake <i class=\"brk brk-python\"></i>", response.body)
-    assert_match(
-      "<i class=\"brk brk-mirlodev brk-4x pull-left\"></i>", response.body)
+    assert_response :success
+    assert_select "div.rateit"
+    assert_select "span.rateit"
+
+    div = "<div data-rateit-backingfld=\"#my_object_rating\""
+    div += " data-rateit-max=\"4\" "
+    div += "data-rateit-min=\"0\" data-rateit-step=\"1\" "
+    div += "data-rateit-resetable=\"false\" class=\"rateit\" "
+    div += "data-foo=\"bar\"></div>"
+    assert_match(div, response.body)
+
+    span = "<span data-rateit-backingfld=\"#my_object_rating2\" "
+    span += "data-rateit-max=\"10\" data-rateit-min=\"0\" "
+    span += "data-rateit-step=\"0.5\" "
+    span += "data-rateit-resetable=\"true\" data-rateit-value=\"2\" "
+    span += "data-rateit-ispreset=\"true\" class=\"rateit\"></span>"
+    assert_match(span, response.body)
   end
 
   private
